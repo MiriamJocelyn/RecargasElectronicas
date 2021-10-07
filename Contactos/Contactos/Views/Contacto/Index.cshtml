@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Contactos.Models.Tablas.ContactoBusqueda>
+@{
+    ViewBag.Title = "Index";
+}
+<hr />
+<div class="form-horizontal top2">
+
+    <div class="form-group">
+        <div class="col-md-3">
+            @Html.Label("Buscar por Nombre:")
+        </div>
+        <div class="col-md-4">
+            @Html.Editor("Buscar")
+        </div>
+    </div>
+</div>
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayName("Tipo de Contacto")
+            </th>
+            <th>
+                @Html.DisplayName("Teléfono Fijo")
+            </th>
+            <th>
+                @Html.DisplayName("Teléfono Móvil")
+            </th>
+            <th>
+                @Html.DisplayName("Fecha de Nacimiento")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                @Html.DisplayName("Estado Civil")
+            </th>
+
+        </tr>
+       
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(m => item.Nombre)</td>
+            <td>@Html.DisplayFor(m => item.TipoContacto)</td>
+            <td>@Html.DisplayFor(m => item.TelefonoFijo)</td>
+            <td>@Html.DisplayFor(m => item.TelefonoMovil)</td>
+            <td>@Html.DisplayFor(m => item.FechaNacimiento)</td>
+            <td>@Html.DisplayFor(m => item.Sexo)</td>
+            <td>@Html.DisplayFor(m => item.EstadoCivil)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            </td>            
+        </tr>
+        }
+    </tbody>
+</table>

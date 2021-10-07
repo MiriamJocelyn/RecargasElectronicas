@@ -1,0 +1,46 @@
+﻿@model IEnumerable<El_Hivan.Models.Precio>
+
+@{
+    Layout = null;
+    ViewBag.Title = "Index";
+}
+
+@*<h2>Index</h2>*@
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Arreglo.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoPrenda.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Arreglo.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoPrenda.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,50 @@
+﻿@model El_Hivan.Models.Prenda
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está segura de eliminar esto?</h3>
+<div>
+    <h4>Prenda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Arreglo.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Arreglo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoPrenda.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPrenda.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Cancelar", "Create")
+        </div>
+    }
+</div>

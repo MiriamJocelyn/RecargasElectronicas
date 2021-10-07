@@ -1,0 +1,184 @@
+﻿.btn-primary {
+    background-color: #24C6DC !important;
+    border: hidden !important;
+}
+
+h1 {
+    font-family: Azonix !important;
+    font-size: 72px;
+    background: -webkit-linear-gradient(#24C6DC, #514A9D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: MetroDF !important;
+    background: -webkit-linear-gradient(#24C6DC, #514A9D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body {
+    /*background-image: url("~/Content/Images/HiloBck.png");*/
+    /*background-image: url('../Images/TrajesBck.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;*/
+    background-color: white;
+    font-family: Comfortaa;
+    color: black;
+    /*background-image: url('HiloBck.jpg');*/
+}
+
+.menu {
+    height: 100%;
+    position: fixed !important;
+    z-index: 3;
+}
+
+.menubtn:hover {
+    background: black !important;
+}
+
+#divMenu {
+    position: absolute;
+    /*width: 590px;*/
+    top: 0px;
+    width: 80px !important;
+    height: 100% !important;
+    /*border: 5px solid orange;*/
+    /*border-radius: 100px;*/
+    /*background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);*/
+    background: linear-gradient(to bottom, #24C6DC, #514A9D);
+    /*background: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);*/
+    transition: .6s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.menuicon {
+    /*font: normal normal normal 60px/1 FontAwesome !important;
+    font-size: unset;*/
+    color: white !important;
+    /*color: black !important;*/
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#icoHome {
+    padding-top: 6px !important;
+    padding-left: 6px !important;
+}
+
+#icoNota {
+    padding-left: 12px !important;
+}
+
+#icoCliente {
+    padding-left: 9px !important;
+}
+
+#icoPrenda {
+    padding-top: 10px !important;
+    padding-left: 4px !important;
+}
+
+#icoTipoPrenda {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+/*#imgLogo {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 60px;
+}*/
+
+#divHome {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    /*border: 5px solid black;*/
+    border-radius: 10px;
+    background: transparent;
+    /*background: white;*/
+    transition: .6s;
+}
+
+#divNota {
+    position: absolute;
+    top: 140px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    /*border: 5px solid black;*/
+    border-radius: 10px;
+    background: transparent;
+    /*background: white;*/
+    transition: .6s;
+}
+
+#divCliente {
+    position: absolute;
+    top: 240px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    background: transparent;
+    /*background: white;*/
+    transition: .6s;
+}
+
+#divPrenda {
+    position: absolute;
+    top: 340px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    background: transparent;
+    /*background: white;*/
+    transition: .6s;
+}
+
+#divTipoPrenda {
+    position: absolute;
+    top: 440px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    /*border: 5px solid black;*/
+    border-radius: 10px;
+    background: transparent;
+    /*background: white;*/
+    transition: .6s;
+}
+
+#divArreglo {
+    position: absolute;
+    top: 540px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    /*border: 5px solid black;*/
+    border-radius: 10px;
+    background: transparent;
+    /*background: white;*/
+    transition: .6s;
+}
+
+/*#divPrecio {
+    position: absolute;
+    top: 700px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    border: 5px solid black;
+    border-radius: 10px;
+    background: transparent;
+    background: white;
+    transition: .6s;
+}*/

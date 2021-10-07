@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3148c89cb9a44ebf9dd9fcbf42bdda28" Name="Diagram1">
+        <EntityTypeShape EntityType="ElHilvanModel.Arreglo" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElHilvanModel.Clientes" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElHilvanModel.Empresa" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElHilvanModel.Nota" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElHilvanModel.NotaPrenda" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElHilvanModel.Prenda" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElHilvanModel.TipoPrenda" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="ElHilvanModel.FK_Precio_TipoArreglo" ManuallyRouted="false" />
+        <AssociationConnector Association="ElHilvanModel.FK_Nota_Clientes" ManuallyRouted="false" />
+        <AssociationConnector Association="ElHilvanModel.FK_Nota_Empresa" ManuallyRouted="false" />
+        <AssociationConnector Association="ElHilvanModel.FK_NotaPrenda_Nota" ManuallyRouted="false" />
+        <AssociationConnector Association="ElHilvanModel.FK_NotaPrenda_Prenda" ManuallyRouted="false" />
+        <AssociationConnector Association="ElHilvanModel.FK_Precio_TipoPrenda" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

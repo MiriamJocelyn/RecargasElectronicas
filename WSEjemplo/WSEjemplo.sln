@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiWS", "MiWS\MiWS.csproj", "{0D390025-BE95-4C1D-8D69-A68C2F61A8E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{B973E09B-AA26-431C-953E-9F1FBD58822B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D390025-BE95-4C1D-8D69-A68C2F61A8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D390025-BE95-4C1D-8D69-A68C2F61A8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D390025-BE95-4C1D-8D69-A68C2F61A8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D390025-BE95-4C1D-8D69-A68C2F61A8E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B973E09B-AA26-431C-953E-9F1FBD58822B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B973E09B-AA26-431C-953E-9F1FBD58822B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B973E09B-AA26-431C-953E-9F1FBD58822B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B973E09B-AA26-431C-953E-9F1FBD58822B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E7BD8C5-2409-4BED-8F24-F18D948016FC}
+	EndGlobalSection
+EndGlobal

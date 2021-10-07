@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section miscss{
+    <link href="~/Content/CssPrivate/Home.css" rel="stylesheet" />
+}
+@section misjava{
+    <script src="~/Scripts/PrivateJavascripts/jsHome.js"></script>
+}
+
+<div class="jumbotron">
+        <h1 style="text-align: center;">EL HILVÁN</h1>
+        <p class="lead">Una sastreria que brinda los mejores servicios al mejor precio</p>
+        <p class="lead">Para iniciar con la aplicación toque alguno de los iconos de inicio de sesión</p>
+        @*<p><a href="@Url.Action("Create","Nota")" class="btn btn-primary btn-lg">Comenzar &raquo;</a></p>*@
+</div>
+
+<div id="divLogin" class="row jumbotron">
+    <div id="divMamutish" class="col-md-3">
+        <a href="@Url.Action("Create","Nota")">
+            <img src="~/Content/Images/Mamutish.jpg" style="width: 200px; height: 200px;"/>
+        </a>
+    </div>
+    <div id="divPapureos" class="col-md-3">
+        <a href="@Url.Action("Create","Nota")">
+            <img src="~/Content/Images/Papureos.jpg" style="width: 200px; height: 200px;"/>
+        </a>
+    </div>
+    <div id="divMarisol" class="col-md-3">
+        <a href="@Url.Action("Create","Nota")">
+            <img src="~/Content/Images/Marisol.jpg" style="width: 200px; height: 200px;"/>
+        </a>
+    </div>
+    <div id="divMaLuz" class="col-md-3">
+        <a href="@Url.Action("Create","Nota")">
+            <img src="~/Content/Images/MaLuz.jpg" style="width: 200px; height: 200px;"/>
+        </a>
+    </div>
+</div>

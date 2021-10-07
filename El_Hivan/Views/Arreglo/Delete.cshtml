@@ -1,0 +1,40 @@
+﻿@model El_Hivan.Models.Arreglo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está segura de eliminar esto?</h3>
+<div>
+    <h4>Tipo de Arreglo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.idPrecio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idPrecio)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Cancelar", "Create")
+        </div>
+    }
+</div>

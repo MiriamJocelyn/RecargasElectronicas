@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div id="root">
+    <h1>{{mensaje}}</h1>
+    <div>
+        <input type="text" v-model="txtBuscar"/>
+        <ul>
+            <li v-for="item in listaFiltrada">{{item.Id}} -  {{item.Nombre}}</li>
+        </ul>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var url='@Url.RouteUrl("Default")';
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#root",
+            data: {
+                mensaje: 'Hola mundo desde vue',
+                lista: [],
+                txtBuscar:''
+            },
+            computed: {
+                listaFiltrada: function () {
+                    var arreglo = this.lista;
+                    var query = this.txtBuscar;
+                    if (query !== "") {
+                        arreglo = this.lista.filter(function (cliente) {
+                         return  ( cliente.Nombre.toLowerCase()+" " + cliente.Direccion.toLowerCase()).indexOf(query.toLowerCase())>-1
+                        });
+                    }
+                    return arreglo;
+                }
+            },
+            created: function () {
+                axios.get(url+"/GetClientes")
+                    .then(function (response) {
+                        console.table(response.data);
+                        app.lista = response.data;
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+
+            }
+        })
+
+    </script>
+}

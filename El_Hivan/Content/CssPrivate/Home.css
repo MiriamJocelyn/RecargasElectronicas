@@ -1,0 +1,53 @@
+﻿#divMenu {
+    display: none;
+}
+
+body {
+    /*background-image: url("~/Content/Images/HiloBck.png");*/
+    /*background-image: url('../Images/HiloBck.jpg') !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;*/
+    background: linear-gradient(to bottom, #1b96a7, #3f3b78) !important;
+    font-family: Comfortaa !important;
+    color: black !important;
+}
+
+h1 {
+    font-family: Azonix !important;
+    font-size: 72px;
+    background: -webkit-linear-gradient(#24C6DC, #514A9D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: MetroDF !important;
+    background: -webkit-linear-gradient(#24C6DC, #514A9D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#divMamutish {
+    margin-left: 80px;
+    height: 210px;
+    width: 210px;
+}
+
+#divPapureos {
+    margin-left: 10px;
+    height: 210px;
+    width: 210px;
+}
+
+#divMarisol {
+    margin-left: 10px;
+    height: 210px;
+    width: 210px;
+}
+
+#divLuz {
+    margin-left: 10px;
+    height: 210px;
+    width: 210px;
+}

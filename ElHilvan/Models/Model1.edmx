@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ElHilvanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar(max)" />
+          <Property Name="Telefono" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Dueño" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RFC" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CURP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="int" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="180" Nullable="false" />
+          <Property Name="Rep_Datos" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Incorp_Fiscal" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nota">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaEntrega" Type="datetime" Nullable="false" />
+          <Property Name="FechaRecibido" Type="datetime" Nullable="false" />
+          <Property Name="idEmpresa" Type="int" Nullable="false" />
+          <Property Name="Folio" Type="int" Nullable="false" />
+          <Property Name="idNotaPrenda" Type="int" Nullable="false" />
+          <Property Name="idClientes" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NotaPrenda">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idNota" Type="int" Nullable="false" />
+          <Property Name="idPrenda" Type="int" Nullable="false" />
+          <Property Name="idPrecio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Precio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoPrenda" Type="int" Nullable="false" />
+          <Property Name="idArreglo" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prenda">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoPrenda" Type="int" Nullable="false" />
+          <Property Name="idTipoArreglo" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="180" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoArreglo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idPrecio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoPrenda">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Nota_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="idClientes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nota_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nota_NotaPrenda">
+          <End Role="NotaPrenda" Type="Self.NotaPrenda" Multiplicity="1" />
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotaPrenda">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="idNotaPrenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotaPrenda_Precio">
+          <End Role="Precio" Type="Self.Precio" Multiplicity="1" />
+          <End Role="NotaPrenda" Type="Self.NotaPrenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Precio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NotaPrenda">
+              <PropertyRef Name="idPrecio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotaPrenda_Prenda">
+          <End Role="Prenda" Type="Self.Prenda" Multiplicity="1" />
+          <End Role="NotaPrenda" Type="Self.NotaPrenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prenda">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NotaPrenda">
+              <PropertyRef Name="idPrenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Precio_TipoArreglo">
+          <End Role="TipoArreglo" Type="Self.TipoArreglo" Multiplicity="1" />
+          <End Role="Precio" Type="Self.Precio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoArreglo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Precio">
+              <PropertyRef Name="idArreglo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Precio_TipoPrenda">
+          <End Role="TipoPrenda" Type="Self.TipoPrenda" Multiplicity="1" />
+          <End Role="Precio" Type="Self.Precio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPrenda">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Precio">
+              <PropertyRef Name="idTipoPrenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prenda_TipoArreglo">
+          <End Role="TipoArreglo" Type="Self.TipoArreglo" Multiplicity="1" />
+          <End Role="Prenda" Type="Self.Prenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoArreglo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Prenda">
+              <PropertyRef Name="idTipoArreglo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prenda_TipoPrenda">
+          <End Role="TipoPrenda" Type="Self.TipoPrenda" Multiplicity="1" />
+          <End Role="Prenda" Type="Self.Prenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPrenda">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Prenda">
+              <PropertyRef Name="idTipoPrenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ElHilvanModelStoreContainer">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nota" EntityType="Self.Nota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotaPrenda" EntityType="Self.NotaPrenda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Precio" EntityType="Self.Precio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prenda" EntityType="Self.Prenda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoArreglo" EntityType="Self.TipoArreglo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPrenda" EntityType="Self.TipoPrenda" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Nota_Clientes" Association="Self.FK_Nota_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nota_Empresa" Association="Self.FK_Nota_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nota_NotaPrenda" Association="Self.FK_Nota_NotaPrenda">
+            <End Role="NotaPrenda" EntitySet="NotaPrenda" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotaPrenda_Precio" Association="Self.FK_NotaPrenda_Precio">
+            <End Role="Precio" EntitySet="Precio" />
+            <End Role="NotaPrenda" EntitySet="NotaPrenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotaPrenda_Prenda" Association="Self.FK_NotaPrenda_Prenda">
+            <End Role="Prenda" EntitySet="Prenda" />
+            <End Role="NotaPrenda" EntitySet="NotaPrenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Precio_TipoArreglo" Association="Self.FK_Precio_TipoArreglo">
+            <End Role="TipoArreglo" EntitySet="TipoArreglo" />
+            <End Role="Precio" EntitySet="Precio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Precio_TipoPrenda" Association="Self.FK_Precio_TipoPrenda">
+            <End Role="TipoPrenda" EntitySet="TipoPrenda" />
+            <End Role="Precio" EntitySet="Precio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prenda_TipoArreglo" Association="Self.FK_Prenda_TipoArreglo">
+            <End Role="TipoArreglo" EntitySet="TipoArreglo" />
+            <End Role="Prenda" EntitySet="Prenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prenda_TipoPrenda" Association="Self.FK_Prenda_TipoPrenda">
+            <End Role="TipoPrenda" EntitySet="TipoPrenda" />
+            <End Role="Prenda" EntitySet="Prenda" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ElHilvanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Nota" Relationship="Self.FK_Nota_Clientes" FromRole="Clientes" ToRole="Nota" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dueño" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RFC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CURP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="Int32" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="180" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rep_Datos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Incorp_Fiscal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Nota" Relationship="Self.FK_Nota_Empresa" FromRole="Empresa" ToRole="Nota" />
+        </EntityType>
+        <EntityType Name="Nota">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaEntrega" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaRecibido" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="Folio" Type="Int32" Nullable="false" />
+          <Property Name="idNotaPrenda" Type="Int32" Nullable="false" />
+          <Property Name="idClientes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Nota_Clientes" FromRole="Nota" ToRole="Clientes" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK_Nota_Empresa" FromRole="Nota" ToRole="Empresa" />
+          <NavigationProperty Name="NotaPrenda" Relationship="Self.FK_Nota_NotaPrenda" FromRole="Nota" ToRole="NotaPrenda" />
+        </EntityType>
+        <EntityType Name="NotaPrenda">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idNota" Type="Int32" Nullable="false" />
+          <Property Name="idPrenda" Type="Int32" Nullable="false" />
+          <Property Name="idPrecio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Nota" Relationship="Self.FK_Nota_NotaPrenda" FromRole="NotaPrenda" ToRole="Nota" />
+          <NavigationProperty Name="Precio" Relationship="Self.FK_NotaPrenda_Precio" FromRole="NotaPrenda" ToRole="Precio" />
+          <NavigationProperty Name="Prenda" Relationship="Self.FK_NotaPrenda_Prenda" FromRole="NotaPrenda" ToRole="Prenda" />
+        </EntityType>
+        <EntityType Name="Precio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoPrenda" Type="Int32" Nullable="false" />
+          <Property Name="idArreglo" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="NotaPrenda" Relationship="Self.FK_NotaPrenda_Precio" FromRole="Precio" ToRole="NotaPrenda" />
+          <NavigationProperty Name="TipoArreglo" Relationship="Self.FK_Precio_TipoArreglo" FromRole="Precio" ToRole="TipoArreglo" />
+          <NavigationProperty Name="TipoPrenda" Relationship="Self.FK_Precio_TipoPrenda" FromRole="Precio" ToRole="TipoPrenda" />
+        </EntityType>
+        <EntityType Name="Prenda">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoPrenda" Type="Int32" Nullable="false" />
+          <Property Name="idTipoArreglo" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="180" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NotaPrenda" Relationship="Self.FK_NotaPrenda_Prenda" FromRole="Prenda" ToRole="NotaPrenda" />
+          <NavigationProperty Name="TipoArreglo" Relationship="Self.FK_Prenda_TipoArreglo" FromRole="Prenda" ToRole="TipoArreglo" />
+          <NavigationProperty Name="TipoPrenda" Relationship="Self.FK_Prenda_TipoPrenda" FromRole="Prenda" ToRole="TipoPrenda" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoArreglo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idPrecio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Precio" Relationship="Self.FK_Precio_TipoArreglo" FromRole="TipoArreglo" ToRole="Precio" />
+          <NavigationProperty Name="Prenda" Relationship="Self.FK_Prenda_TipoArreglo" FromRole="TipoArreglo" ToRole="Prenda" />
+        </EntityType>
+        <EntityType Name="TipoPrenda">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Precio" Relationship="Self.FK_Precio_TipoPrenda" FromRole="TipoPrenda" ToRole="Precio" />
+          <NavigationProperty Name="Prenda" Relationship="Self.FK_Prenda_TipoPrenda" FromRole="TipoPrenda" ToRole="Prenda" />
+        </EntityType>
+        <Association Name="FK_Nota_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="idClientes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nota_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nota_NotaPrenda">
+          <End Role="NotaPrenda" Type="Self.NotaPrenda" Multiplicity="1" />
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotaPrenda">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="idNotaPrenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotaPrenda_Precio">
+          <End Role="Precio" Type="Self.Precio" Multiplicity="1" />
+          <End Role="NotaPrenda" Type="Self.NotaPrenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Precio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NotaPrenda">
+              <PropertyRef Name="idPrecio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NotaPrenda_Prenda">
+          <End Role="Prenda" Type="Self.Prenda" Multiplicity="1" />
+          <End Role="NotaPrenda" Type="Self.NotaPrenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prenda">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NotaPrenda">
+              <PropertyRef Name="idPrenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Precio_TipoArreglo">
+          <End Role="TipoArreglo" Type="Self.TipoArreglo" Multiplicity="1" />
+          <End Role="Precio" Type="Self.Precio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoArreglo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Precio">
+              <PropertyRef Name="idArreglo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Precio_TipoPrenda">
+          <End Role="TipoPrenda" Type="Self.TipoPrenda" Multiplicity="1" />
+          <End Role="Precio" Type="Self.Precio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPrenda">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Precio">
+              <PropertyRef Name="idTipoPrenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prenda_TipoArreglo">
+          <End Role="TipoArreglo" Type="Self.TipoArreglo" Multiplicity="1" />
+          <End Role="Prenda" Type="Self.Prenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoArreglo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Prenda">
+              <PropertyRef Name="idTipoArreglo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prenda_TipoPrenda">
+          <End Role="TipoPrenda" Type="Self.TipoPrenda" Multiplicity="1" />
+          <End Role="Prenda" Type="Self.Prenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPrenda">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Prenda">
+              <PropertyRef Name="idTipoPrenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ElHilvanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" />
+          <EntitySet Name="Nota" EntityType="Self.Nota" />
+          <EntitySet Name="NotaPrenda" EntityType="Self.NotaPrenda" />
+          <EntitySet Name="Precio" EntityType="Self.Precio" />
+          <EntitySet Name="Prenda" EntityType="Self.Prenda" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipoArreglo" EntityType="Self.TipoArreglo" />
+          <EntitySet Name="TipoPrenda" EntityType="Self.TipoPrenda" />
+          <AssociationSet Name="FK_Nota_Clientes" Association="Self.FK_Nota_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nota_Empresa" Association="Self.FK_Nota_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nota_NotaPrenda" Association="Self.FK_Nota_NotaPrenda">
+            <End Role="NotaPrenda" EntitySet="NotaPrenda" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotaPrenda_Precio" Association="Self.FK_NotaPrenda_Precio">
+            <End Role="Precio" EntitySet="Precio" />
+            <End Role="NotaPrenda" EntitySet="NotaPrenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NotaPrenda_Prenda" Association="Self.FK_NotaPrenda_Prenda">
+            <End Role="Prenda" EntitySet="Prenda" />
+            <End Role="NotaPrenda" EntitySet="NotaPrenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Precio_TipoArreglo" Association="Self.FK_Precio_TipoArreglo">
+            <End Role="TipoArreglo" EntitySet="TipoArreglo" />
+            <End Role="Precio" EntitySet="Precio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Precio_TipoPrenda" Association="Self.FK_Precio_TipoPrenda">
+            <End Role="TipoPrenda" EntitySet="TipoPrenda" />
+            <End Role="Precio" EntitySet="Precio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prenda_TipoArreglo" Association="Self.FK_Prenda_TipoArreglo">
+            <End Role="TipoArreglo" EntitySet="TipoArreglo" />
+            <End Role="Prenda" EntitySet="Prenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prenda_TipoPrenda" Association="Self.FK_Prenda_TipoPrenda">
+            <End Role="TipoPrenda" EntitySet="TipoPrenda" />
+            <End Role="Prenda" EntitySet="Prenda" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ElHilvanModelStoreContainer" CdmEntityContainer="ElHilvanEntities">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="ElHilvanModel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="ElHilvanModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Dueño" ColumnName="Dueño" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Rep_Datos" ColumnName="Rep_Datos" />
+                <ScalarProperty Name="Incorp_Fiscal" ColumnName="Incorp_Fiscal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nota">
+            <EntityTypeMapping TypeName="ElHilvanModel.Nota">
+              <MappingFragment StoreEntitySet="Nota">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="FechaRecibido" ColumnName="FechaRecibido" />
+                <ScalarProperty Name="idEmpresa" ColumnName="idEmpresa" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="idNotaPrenda" ColumnName="idNotaPrenda" />
+                <ScalarProperty Name="idClientes" ColumnName="idClientes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotaPrenda">
+            <EntityTypeMapping TypeName="ElHilvanModel.NotaPrenda">
+              <MappingFragment StoreEntitySet="NotaPrenda">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idNota" ColumnName="idNota" />
+                <ScalarProperty Name="idPrenda" ColumnName="idPrenda" />
+                <ScalarProperty Name="idPrecio" ColumnName="idPrecio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Precio">
+            <EntityTypeMapping TypeName="ElHilvanModel.Precio">
+              <MappingFragment StoreEntitySet="Precio">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idTipoPrenda" ColumnName="idTipoPrenda" />
+                <ScalarProperty Name="idArreglo" ColumnName="idArreglo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prenda">
+            <EntityTypeMapping TypeName="ElHilvanModel.Prenda">
+              <MappingFragment StoreEntitySet="Prenda">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idTipoPrenda" ColumnName="idTipoPrenda" />
+                <ScalarProperty Name="idTipoArreglo" ColumnName="idTipoArreglo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ElHilvanModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoArreglo">
+            <EntityTypeMapping TypeName="ElHilvanModel.TipoArreglo">
+              <MappingFragment StoreEntitySet="TipoArreglo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="idPrecio" ColumnName="idPrecio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPrenda">
+            <EntityTypeMapping TypeName="ElHilvanModel.TipoPrenda">
+              <MappingFragment StoreEntitySet="TipoPrenda">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
